@@ -1,0 +1,2133 @@
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type Category {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  published_at: DateTime
+  restaurants(sort: String, limit: Int, start: Int, where: JSON): [Restaurant]
+}
+
+type CategoryConnection {
+  values: [Category]
+  groupBy: CategoryGroupBy
+  aggregate: CategoryAggregator
+}
+
+type CategoryAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CategoryGroupBy {
+  id: [CategoryConnectionId]
+  created_at: [CategoryConnectionCreated_at]
+  updated_at: [CategoryConnectionUpdated_at]
+  name: [CategoryConnectionName]
+  published_at: [CategoryConnectionPublished_at]
+}
+
+type CategoryConnectionId {
+  key: ID
+  connection: CategoryConnection
+}
+
+type CategoryConnectionCreated_at {
+  key: DateTime
+  connection: CategoryConnection
+}
+
+type CategoryConnectionUpdated_at {
+  key: DateTime
+  connection: CategoryConnection
+}
+
+type CategoryConnectionName {
+  key: String
+  connection: CategoryConnection
+}
+
+type CategoryConnectionPublished_at {
+  key: DateTime
+  connection: CategoryConnection
+}
+
+input CategoryInput {
+  name: String!
+  restaurants: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editCategoryInput {
+  name: String
+  restaurants: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createCategoryInput {
+  data: CategoryInput
+}
+
+type createCategoryPayload {
+  category: Category
+}
+
+input updateCategoryInput {
+  where: InputID
+  data: editCategoryInput
+}
+
+type updateCategoryPayload {
+  category: Category
+}
+
+input deleteCategoryInput {
+  where: InputID
+}
+
+type deleteCategoryPayload {
+  category: Category
+}
+
+type CenterIntroduction {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  introduction: String
+  photo: UploadFile
+  published_at: DateTime
+}
+
+type CenterIntroductionConnection {
+  values: [CenterIntroduction]
+  groupBy: CenterIntroductionGroupBy
+  aggregate: CenterIntroductionAggregator
+}
+
+type CenterIntroductionAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CenterIntroductionGroupBy {
+  id: [CenterIntroductionConnectionId]
+  created_at: [CenterIntroductionConnectionCreated_at]
+  updated_at: [CenterIntroductionConnectionUpdated_at]
+  introduction: [CenterIntroductionConnectionIntroduction]
+  photo: [CenterIntroductionConnectionPhoto]
+  published_at: [CenterIntroductionConnectionPublished_at]
+}
+
+type CenterIntroductionConnectionId {
+  key: ID
+  connection: CenterIntroductionConnection
+}
+
+type CenterIntroductionConnectionCreated_at {
+  key: DateTime
+  connection: CenterIntroductionConnection
+}
+
+type CenterIntroductionConnectionUpdated_at {
+  key: DateTime
+  connection: CenterIntroductionConnection
+}
+
+type CenterIntroductionConnectionIntroduction {
+  key: String
+  connection: CenterIntroductionConnection
+}
+
+type CenterIntroductionConnectionPhoto {
+  key: ID
+  connection: CenterIntroductionConnection
+}
+
+type CenterIntroductionConnectionPublished_at {
+  key: DateTime
+  connection: CenterIntroductionConnection
+}
+
+input CenterIntroductionInput {
+  introduction: String
+  photo: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editCenterIntroductionInput {
+  introduction: String
+  photo: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createCenterIntroductionInput {
+  data: CenterIntroductionInput
+}
+
+type createCenterIntroductionPayload {
+  centerIntroduction: CenterIntroduction
+}
+
+input updateCenterIntroductionInput {
+  where: InputID
+  data: editCenterIntroductionInput
+}
+
+type updateCenterIntroductionPayload {
+  centerIntroduction: CenterIntroduction
+}
+
+input deleteCenterIntroductionInput {
+  where: InputID
+}
+
+type deleteCenterIntroductionPayload {
+  centerIntroduction: CenterIntroduction
+}
+
+type Chair {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  discribe: String!
+  published_at: DateTime
+  photo(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type ChairConnection {
+  values: [Chair]
+  groupBy: ChairGroupBy
+  aggregate: ChairAggregator
+}
+
+type ChairAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ChairGroupBy {
+  id: [ChairConnectionId]
+  created_at: [ChairConnectionCreated_at]
+  updated_at: [ChairConnectionUpdated_at]
+  name: [ChairConnectionName]
+  discribe: [ChairConnectionDiscribe]
+  published_at: [ChairConnectionPublished_at]
+}
+
+type ChairConnectionId {
+  key: ID
+  connection: ChairConnection
+}
+
+type ChairConnectionCreated_at {
+  key: DateTime
+  connection: ChairConnection
+}
+
+type ChairConnectionUpdated_at {
+  key: DateTime
+  connection: ChairConnection
+}
+
+type ChairConnectionName {
+  key: String
+  connection: ChairConnection
+}
+
+type ChairConnectionDiscribe {
+  key: String
+  connection: ChairConnection
+}
+
+type ChairConnectionPublished_at {
+  key: DateTime
+  connection: ChairConnection
+}
+
+input ChairInput {
+  name: String!
+  photo: [ID]
+  discribe: String!
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editChairInput {
+  name: String
+  photo: [ID]
+  discribe: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createChairInput {
+  data: ChairInput
+}
+
+type createChairPayload {
+  chair: Chair
+}
+
+input updateChairInput {
+  where: InputID
+  data: editChairInput
+}
+
+type updateChairPayload {
+  chair: Chair
+}
+
+input deleteChairInput {
+  where: InputID
+}
+
+type deleteChairPayload {
+  chair: Chair
+}
+
+type ChineseQuote {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  author: String
+  p1: String
+  p2: String
+  published_at: DateTime
+}
+
+type ChineseQuoteConnection {
+  values: [ChineseQuote]
+  groupBy: ChineseQuoteGroupBy
+  aggregate: ChineseQuoteAggregator
+}
+
+type ChineseQuoteAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ChineseQuoteGroupBy {
+  id: [ChineseQuoteConnectionId]
+  created_at: [ChineseQuoteConnectionCreated_at]
+  updated_at: [ChineseQuoteConnectionUpdated_at]
+  author: [ChineseQuoteConnectionAuthor]
+  p1: [ChineseQuoteConnectionP1]
+  p2: [ChineseQuoteConnectionP2]
+  published_at: [ChineseQuoteConnectionPublished_at]
+}
+
+type ChineseQuoteConnectionId {
+  key: ID
+  connection: ChineseQuoteConnection
+}
+
+type ChineseQuoteConnectionCreated_at {
+  key: DateTime
+  connection: ChineseQuoteConnection
+}
+
+type ChineseQuoteConnectionUpdated_at {
+  key: DateTime
+  connection: ChineseQuoteConnection
+}
+
+type ChineseQuoteConnectionAuthor {
+  key: String
+  connection: ChineseQuoteConnection
+}
+
+type ChineseQuoteConnectionP1 {
+  key: String
+  connection: ChineseQuoteConnection
+}
+
+type ChineseQuoteConnectionP2 {
+  key: String
+  connection: ChineseQuoteConnection
+}
+
+type ChineseQuoteConnectionPublished_at {
+  key: DateTime
+  connection: ChineseQuoteConnection
+}
+
+input ChineseQuoteInput {
+  author: String
+  p1: String
+  p2: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editChineseQuoteInput {
+  author: String
+  p1: String
+  p2: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createChineseQuoteInput {
+  data: ChineseQuoteInput
+}
+
+type createChineseQuotePayload {
+  chineseQuote: ChineseQuote
+}
+
+input updateChineseQuoteInput {
+  where: InputID
+  data: editChineseQuoteInput
+}
+
+type updateChineseQuotePayload {
+  chineseQuote: ChineseQuote
+}
+
+input deleteChineseQuoteInput {
+  where: InputID
+}
+
+type deleteChineseQuotePayload {
+  chineseQuote: ChineseQuote
+}
+
+type Download {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  published_at: DateTime
+  file(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type DownloadConnection {
+  values: [Download]
+  groupBy: DownloadGroupBy
+  aggregate: DownloadAggregator
+}
+
+type DownloadAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type DownloadGroupBy {
+  id: [DownloadConnectionId]
+  created_at: [DownloadConnectionCreated_at]
+  updated_at: [DownloadConnectionUpdated_at]
+  name: [DownloadConnectionName]
+  published_at: [DownloadConnectionPublished_at]
+}
+
+type DownloadConnectionId {
+  key: ID
+  connection: DownloadConnection
+}
+
+type DownloadConnectionCreated_at {
+  key: DateTime
+  connection: DownloadConnection
+}
+
+type DownloadConnectionUpdated_at {
+  key: DateTime
+  connection: DownloadConnection
+}
+
+type DownloadConnectionName {
+  key: String
+  connection: DownloadConnection
+}
+
+type DownloadConnectionPublished_at {
+  key: DateTime
+  connection: DownloadConnection
+}
+
+input DownloadInput {
+  file: [ID]
+  name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editDownloadInput {
+  file: [ID]
+  name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createDownloadInput {
+  data: DownloadInput
+}
+
+type createDownloadPayload {
+  download: Download
+}
+
+input updateDownloadInput {
+  where: InputID
+  data: editDownloadInput
+}
+
+type updateDownloadPayload {
+  download: Download
+}
+
+input deleteDownloadInput {
+  where: InputID
+}
+
+type deleteDownloadPayload {
+  download: Download
+}
+
+type Member {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  title: String
+  photo: UploadFile
+  published_at: DateTime
+}
+
+type MemberConnection {
+  values: [Member]
+  groupBy: MemberGroupBy
+  aggregate: MemberAggregator
+}
+
+type MemberAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type MemberGroupBy {
+  id: [MemberConnectionId]
+  created_at: [MemberConnectionCreated_at]
+  updated_at: [MemberConnectionUpdated_at]
+  name: [MemberConnectionName]
+  title: [MemberConnectionTitle]
+  photo: [MemberConnectionPhoto]
+  published_at: [MemberConnectionPublished_at]
+}
+
+type MemberConnectionId {
+  key: ID
+  connection: MemberConnection
+}
+
+type MemberConnectionCreated_at {
+  key: DateTime
+  connection: MemberConnection
+}
+
+type MemberConnectionUpdated_at {
+  key: DateTime
+  connection: MemberConnection
+}
+
+type MemberConnectionName {
+  key: String
+  connection: MemberConnection
+}
+
+type MemberConnectionTitle {
+  key: String
+  connection: MemberConnection
+}
+
+type MemberConnectionPhoto {
+  key: ID
+  connection: MemberConnection
+}
+
+type MemberConnectionPublished_at {
+  key: DateTime
+  connection: MemberConnection
+}
+
+input MemberInput {
+  name: String!
+  title: String
+  photo: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editMemberInput {
+  name: String
+  title: String
+  photo: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createMemberInput {
+  data: MemberInput
+}
+
+type createMemberPayload {
+  member: Member
+}
+
+input updateMemberInput {
+  where: InputID
+  data: editMemberInput
+}
+
+type updateMemberPayload {
+  member: Member
+}
+
+input deleteMemberInput {
+  where: InputID
+}
+
+type deleteMemberPayload {
+  member: Member
+}
+
+type New {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String!
+  discribe: String
+  profile: String
+  date: DateTime
+  photo: UploadFile
+  published_at: DateTime
+  news_classes(sort: String, limit: Int, start: Int, where: JSON): [NewsClass]
+  news_displays(sort: String, limit: Int, start: Int, where: JSON): [NewsDisplay]
+}
+
+type NewConnection {
+  values: [New]
+  groupBy: NewGroupBy
+  aggregate: NewAggregator
+}
+
+type NewAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type NewGroupBy {
+  id: [NewConnectionId]
+  created_at: [NewConnectionCreated_at]
+  updated_at: [NewConnectionUpdated_at]
+  title: [NewConnectionTitle]
+  discribe: [NewConnectionDiscribe]
+  profile: [NewConnectionProfile]
+  date: [NewConnectionDate]
+  photo: [NewConnectionPhoto]
+  published_at: [NewConnectionPublished_at]
+}
+
+type NewConnectionId {
+  key: ID
+  connection: NewConnection
+}
+
+type NewConnectionCreated_at {
+  key: DateTime
+  connection: NewConnection
+}
+
+type NewConnectionUpdated_at {
+  key: DateTime
+  connection: NewConnection
+}
+
+type NewConnectionTitle {
+  key: String
+  connection: NewConnection
+}
+
+type NewConnectionDiscribe {
+  key: String
+  connection: NewConnection
+}
+
+type NewConnectionProfile {
+  key: String
+  connection: NewConnection
+}
+
+type NewConnectionDate {
+  key: DateTime
+  connection: NewConnection
+}
+
+type NewConnectionPhoto {
+  key: ID
+  connection: NewConnection
+}
+
+type NewConnectionPublished_at {
+  key: DateTime
+  connection: NewConnection
+}
+
+input NewInput {
+  title: String!
+  discribe: String
+  news_classes: [ID]
+  profile: String
+  date: DateTime
+  photo: ID
+  news_displays: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editNewInput {
+  title: String
+  discribe: String
+  news_classes: [ID]
+  profile: String
+  date: DateTime
+  photo: ID
+  news_displays: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createNewInput {
+  data: NewInput
+}
+
+type createNewPayload {
+  new: New
+}
+
+input updateNewInput {
+  where: InputID
+  data: editNewInput
+}
+
+type updateNewPayload {
+  new: New
+}
+
+input deleteNewInput {
+  where: InputID
+}
+
+type deleteNewPayload {
+  new: New
+}
+
+type NewsClass {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  category: String
+  published_at: DateTime
+  news(sort: String, limit: Int, start: Int, where: JSON): [New]
+}
+
+type NewsClassConnection {
+  values: [NewsClass]
+  groupBy: NewsClassGroupBy
+  aggregate: NewsClassAggregator
+}
+
+type NewsClassAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type NewsClassGroupBy {
+  id: [NewsClassConnectionId]
+  created_at: [NewsClassConnectionCreated_at]
+  updated_at: [NewsClassConnectionUpdated_at]
+  category: [NewsClassConnectionCategory]
+  published_at: [NewsClassConnectionPublished_at]
+}
+
+type NewsClassConnectionId {
+  key: ID
+  connection: NewsClassConnection
+}
+
+type NewsClassConnectionCreated_at {
+  key: DateTime
+  connection: NewsClassConnection
+}
+
+type NewsClassConnectionUpdated_at {
+  key: DateTime
+  connection: NewsClassConnection
+}
+
+type NewsClassConnectionCategory {
+  key: String
+  connection: NewsClassConnection
+}
+
+type NewsClassConnectionPublished_at {
+  key: DateTime
+  connection: NewsClassConnection
+}
+
+input NewsClassInput {
+  news: [ID]
+  category: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editNewsClassInput {
+  news: [ID]
+  category: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createNewsClassInput {
+  data: NewsClassInput
+}
+
+type createNewsClassPayload {
+  newsClass: NewsClass
+}
+
+input updateNewsClassInput {
+  where: InputID
+  data: editNewsClassInput
+}
+
+type updateNewsClassPayload {
+  newsClass: NewsClass
+}
+
+input deleteNewsClassInput {
+  where: InputID
+}
+
+type deleteNewsClassPayload {
+  newsClass: NewsClass
+}
+
+type NewsDisplay {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+  published_at: DateTime
+  news(sort: String, limit: Int, start: Int, where: JSON): [New]
+}
+
+type NewsDisplayConnection {
+  values: [NewsDisplay]
+  groupBy: NewsDisplayGroupBy
+  aggregate: NewsDisplayAggregator
+}
+
+type NewsDisplayAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type NewsDisplayGroupBy {
+  id: [NewsDisplayConnectionId]
+  created_at: [NewsDisplayConnectionCreated_at]
+  updated_at: [NewsDisplayConnectionUpdated_at]
+  Name: [NewsDisplayConnectionName]
+  published_at: [NewsDisplayConnectionPublished_at]
+}
+
+type NewsDisplayConnectionId {
+  key: ID
+  connection: NewsDisplayConnection
+}
+
+type NewsDisplayConnectionCreated_at {
+  key: DateTime
+  connection: NewsDisplayConnection
+}
+
+type NewsDisplayConnectionUpdated_at {
+  key: DateTime
+  connection: NewsDisplayConnection
+}
+
+type NewsDisplayConnectionName {
+  key: String
+  connection: NewsDisplayConnection
+}
+
+type NewsDisplayConnectionPublished_at {
+  key: DateTime
+  connection: NewsDisplayConnection
+}
+
+input NewsDisplayInput {
+  news: [ID]
+  Name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editNewsDisplayInput {
+  news: [ID]
+  Name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createNewsDisplayInput {
+  data: NewsDisplayInput
+}
+
+type createNewsDisplayPayload {
+  newsDisplay: NewsDisplay
+}
+
+input updateNewsDisplayInput {
+  where: InputID
+  data: editNewsDisplayInput
+}
+
+type updateNewsDisplayPayload {
+  newsDisplay: NewsDisplay
+}
+
+input deleteNewsDisplayInput {
+  where: InputID
+}
+
+type deleteNewsDisplayPayload {
+  newsDisplay: NewsDisplay
+}
+
+type QuantumComputingProgram {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  discribe: String
+  photo: UploadFile
+  link: String
+  published_at: DateTime
+}
+
+type QuantumComputingProgramConnection {
+  values: [QuantumComputingProgram]
+  groupBy: QuantumComputingProgramGroupBy
+  aggregate: QuantumComputingProgramAggregator
+}
+
+type QuantumComputingProgramAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type QuantumComputingProgramGroupBy {
+  id: [QuantumComputingProgramConnectionId]
+  created_at: [QuantumComputingProgramConnectionCreated_at]
+  updated_at: [QuantumComputingProgramConnectionUpdated_at]
+  discribe: [QuantumComputingProgramConnectionDiscribe]
+  photo: [QuantumComputingProgramConnectionPhoto]
+  link: [QuantumComputingProgramConnectionLink]
+  published_at: [QuantumComputingProgramConnectionPublished_at]
+}
+
+type QuantumComputingProgramConnectionId {
+  key: ID
+  connection: QuantumComputingProgramConnection
+}
+
+type QuantumComputingProgramConnectionCreated_at {
+  key: DateTime
+  connection: QuantumComputingProgramConnection
+}
+
+type QuantumComputingProgramConnectionUpdated_at {
+  key: DateTime
+  connection: QuantumComputingProgramConnection
+}
+
+type QuantumComputingProgramConnectionDiscribe {
+  key: String
+  connection: QuantumComputingProgramConnection
+}
+
+type QuantumComputingProgramConnectionPhoto {
+  key: ID
+  connection: QuantumComputingProgramConnection
+}
+
+type QuantumComputingProgramConnectionLink {
+  key: String
+  connection: QuantumComputingProgramConnection
+}
+
+type QuantumComputingProgramConnectionPublished_at {
+  key: DateTime
+  connection: QuantumComputingProgramConnection
+}
+
+input QuantumComputingProgramInput {
+  discribe: String
+  photo: ID
+  link: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editQuantumComputingProgramInput {
+  discribe: String
+  photo: ID
+  link: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createQuantumComputingProgramInput {
+  data: QuantumComputingProgramInput
+}
+
+type createQuantumComputingProgramPayload {
+  quantumComputingProgram: QuantumComputingProgram
+}
+
+input updateQuantumComputingProgramInput {
+  where: InputID
+  data: editQuantumComputingProgramInput
+}
+
+type updateQuantumComputingProgramPayload {
+  quantumComputingProgram: QuantumComputingProgram
+}
+
+input deleteQuantumComputingProgramInput {
+  where: InputID
+}
+
+type deleteQuantumComputingProgramPayload {
+  quantumComputingProgram: QuantumComputingProgram
+}
+
+type QuantumCumputingLearning {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  discribe: String
+  photo: UploadFile
+  link: String
+  published_at: DateTime
+}
+
+type QuantumCumputingLearningConnection {
+  values: [QuantumCumputingLearning]
+  groupBy: QuantumCumputingLearningGroupBy
+  aggregate: QuantumCumputingLearningAggregator
+}
+
+type QuantumCumputingLearningAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type QuantumCumputingLearningGroupBy {
+  id: [QuantumCumputingLearningConnectionId]
+  created_at: [QuantumCumputingLearningConnectionCreated_at]
+  updated_at: [QuantumCumputingLearningConnectionUpdated_at]
+  discribe: [QuantumCumputingLearningConnectionDiscribe]
+  photo: [QuantumCumputingLearningConnectionPhoto]
+  link: [QuantumCumputingLearningConnectionLink]
+  published_at: [QuantumCumputingLearningConnectionPublished_at]
+}
+
+type QuantumCumputingLearningConnectionId {
+  key: ID
+  connection: QuantumCumputingLearningConnection
+}
+
+type QuantumCumputingLearningConnectionCreated_at {
+  key: DateTime
+  connection: QuantumCumputingLearningConnection
+}
+
+type QuantumCumputingLearningConnectionUpdated_at {
+  key: DateTime
+  connection: QuantumCumputingLearningConnection
+}
+
+type QuantumCumputingLearningConnectionDiscribe {
+  key: String
+  connection: QuantumCumputingLearningConnection
+}
+
+type QuantumCumputingLearningConnectionPhoto {
+  key: ID
+  connection: QuantumCumputingLearningConnection
+}
+
+type QuantumCumputingLearningConnectionLink {
+  key: String
+  connection: QuantumCumputingLearningConnection
+}
+
+type QuantumCumputingLearningConnectionPublished_at {
+  key: DateTime
+  connection: QuantumCumputingLearningConnection
+}
+
+input QuantumCumputingLearningInput {
+  discribe: String
+  photo: ID
+  link: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editQuantumCumputingLearningInput {
+  discribe: String
+  photo: ID
+  link: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createQuantumCumputingLearningInput {
+  data: QuantumCumputingLearningInput
+}
+
+type createQuantumCumputingLearningPayload {
+  quantumCumputingLearning: QuantumCumputingLearning
+}
+
+input updateQuantumCumputingLearningInput {
+  where: InputID
+  data: editQuantumCumputingLearningInput
+}
+
+type updateQuantumCumputingLearningPayload {
+  quantumCumputingLearning: QuantumCumputingLearning
+}
+
+input deleteQuantumCumputingLearningInput {
+  where: InputID
+}
+
+type deleteQuantumCumputingLearningPayload {
+  quantumCumputingLearning: QuantumCumputingLearning
+}
+
+type Quote {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  p1: String
+  author: String
+  p2: String
+  published_at: DateTime
+}
+
+type QuoteConnection {
+  values: [Quote]
+  groupBy: QuoteGroupBy
+  aggregate: QuoteAggregator
+}
+
+type QuoteAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type QuoteGroupBy {
+  id: [QuoteConnectionId]
+  created_at: [QuoteConnectionCreated_at]
+  updated_at: [QuoteConnectionUpdated_at]
+  p1: [QuoteConnectionP1]
+  author: [QuoteConnectionAuthor]
+  p2: [QuoteConnectionP2]
+  published_at: [QuoteConnectionPublished_at]
+}
+
+type QuoteConnectionId {
+  key: ID
+  connection: QuoteConnection
+}
+
+type QuoteConnectionCreated_at {
+  key: DateTime
+  connection: QuoteConnection
+}
+
+type QuoteConnectionUpdated_at {
+  key: DateTime
+  connection: QuoteConnection
+}
+
+type QuoteConnectionP1 {
+  key: String
+  connection: QuoteConnection
+}
+
+type QuoteConnectionAuthor {
+  key: String
+  connection: QuoteConnection
+}
+
+type QuoteConnectionP2 {
+  key: String
+  connection: QuoteConnection
+}
+
+type QuoteConnectionPublished_at {
+  key: DateTime
+  connection: QuoteConnection
+}
+
+input QuoteInput {
+  p1: String
+  author: String
+  p2: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editQuoteInput {
+  p1: String
+  author: String
+  p2: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createQuoteInput {
+  data: QuoteInput
+}
+
+type createQuotePayload {
+  quote: Quote
+}
+
+input updateQuoteInput {
+  where: InputID
+  data: editQuoteInput
+}
+
+type updateQuotePayload {
+  quote: Quote
+}
+
+input deleteQuoteInput {
+  where: InputID
+}
+
+type deleteQuotePayload {
+  quote: Quote
+}
+
+type Restaurant {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  description: String
+  published_at: DateTime
+  categories(sort: String, limit: Int, start: Int, where: JSON): [Category]
+}
+
+type RestaurantConnection {
+  values: [Restaurant]
+  groupBy: RestaurantGroupBy
+  aggregate: RestaurantAggregator
+}
+
+type RestaurantAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type RestaurantGroupBy {
+  id: [RestaurantConnectionId]
+  created_at: [RestaurantConnectionCreated_at]
+  updated_at: [RestaurantConnectionUpdated_at]
+  name: [RestaurantConnectionName]
+  description: [RestaurantConnectionDescription]
+  published_at: [RestaurantConnectionPublished_at]
+}
+
+type RestaurantConnectionId {
+  key: ID
+  connection: RestaurantConnection
+}
+
+type RestaurantConnectionCreated_at {
+  key: DateTime
+  connection: RestaurantConnection
+}
+
+type RestaurantConnectionUpdated_at {
+  key: DateTime
+  connection: RestaurantConnection
+}
+
+type RestaurantConnectionName {
+  key: String
+  connection: RestaurantConnection
+}
+
+type RestaurantConnectionDescription {
+  key: String
+  connection: RestaurantConnection
+}
+
+type RestaurantConnectionPublished_at {
+  key: DateTime
+  connection: RestaurantConnection
+}
+
+input RestaurantInput {
+  name: String!
+  description: String
+  categories: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editRestaurantInput {
+  name: String
+  description: String
+  categories: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createRestaurantInput {
+  data: RestaurantInput
+}
+
+type createRestaurantPayload {
+  restaurant: Restaurant
+}
+
+input updateRestaurantInput {
+  where: InputID
+  data: editRestaurantInput
+}
+
+type updateRestaurantPayload {
+  restaurant: Restaurant
+}
+
+input deleteRestaurantInput {
+  where: InputID
+}
+
+type deleteRestaurantPayload {
+  restaurant: Restaurant
+}
+
+type Yes {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  author: String
+  pq: String
+  p2: String
+  published_at: DateTime
+}
+
+type YesConnection {
+  values: [Yes]
+  groupBy: YesGroupBy
+  aggregate: YesAggregator
+}
+
+type YesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type YesGroupBy {
+  id: [YesConnectionId]
+  created_at: [YesConnectionCreated_at]
+  updated_at: [YesConnectionUpdated_at]
+  author: [YesConnectionAuthor]
+  pq: [YesConnectionPq]
+  p2: [YesConnectionP2]
+  published_at: [YesConnectionPublished_at]
+}
+
+type YesConnectionId {
+  key: ID
+  connection: YesConnection
+}
+
+type YesConnectionCreated_at {
+  key: DateTime
+  connection: YesConnection
+}
+
+type YesConnectionUpdated_at {
+  key: DateTime
+  connection: YesConnection
+}
+
+type YesConnectionAuthor {
+  key: String
+  connection: YesConnection
+}
+
+type YesConnectionPq {
+  key: String
+  connection: YesConnection
+}
+
+type YesConnectionP2 {
+  key: String
+  connection: YesConnection
+}
+
+type YesConnectionPublished_at {
+  key: DateTime
+  connection: YesConnection
+}
+
+input YesInput {
+  author: String
+  pq: String
+  p2: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editYesInput {
+  author: String
+  pq: String
+  p2: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createYesInput {
+  data: YesInput
+}
+
+type createYesPayload {
+  yes: Yes
+}
+
+input updateYesInput {
+  where: InputID
+  data: editYesInput
+}
+
+type updateYesPayload {
+  yes: Yes
+}
+
+input deleteYesInput {
+  where: InputID
+}
+
+type deleteYesPayload {
+  yes: Yes
+}
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CenterIntroduction | CenterIntroductionConnection | CenterIntroductionAggregator | CenterIntroductionGroupBy | CenterIntroductionConnectionId | CenterIntroductionConnectionCreated_at | CenterIntroductionConnectionUpdated_at | CenterIntroductionConnectionIntroduction | CenterIntroductionConnectionPhoto | CenterIntroductionConnectionPublished_at | createCenterIntroductionPayload | updateCenterIntroductionPayload | deleteCenterIntroductionPayload | Chair | ChairConnection | ChairAggregator | ChairGroupBy | ChairConnectionId | ChairConnectionCreated_at | ChairConnectionUpdated_at | ChairConnectionName | ChairConnectionDiscribe | ChairConnectionPublished_at | createChairPayload | updateChairPayload | deleteChairPayload | ChineseQuote | ChineseQuoteConnection | ChineseQuoteAggregator | ChineseQuoteGroupBy | ChineseQuoteConnectionId | ChineseQuoteConnectionCreated_at | ChineseQuoteConnectionUpdated_at | ChineseQuoteConnectionAuthor | ChineseQuoteConnectionP1 | ChineseQuoteConnectionP2 | ChineseQuoteConnectionPublished_at | createChineseQuotePayload | updateChineseQuotePayload | deleteChineseQuotePayload | Download | DownloadConnection | DownloadAggregator | DownloadGroupBy | DownloadConnectionId | DownloadConnectionCreated_at | DownloadConnectionUpdated_at | DownloadConnectionName | DownloadConnectionPublished_at | createDownloadPayload | updateDownloadPayload | deleteDownloadPayload | Member | MemberConnection | MemberAggregator | MemberGroupBy | MemberConnectionId | MemberConnectionCreated_at | MemberConnectionUpdated_at | MemberConnectionName | MemberConnectionTitle | MemberConnectionPhoto | MemberConnectionPublished_at | createMemberPayload | updateMemberPayload | deleteMemberPayload | New | NewConnection | NewAggregator | NewGroupBy | NewConnectionId | NewConnectionCreated_at | NewConnectionUpdated_at | NewConnectionTitle | NewConnectionDiscribe | NewConnectionProfile | NewConnectionDate | NewConnectionPhoto | NewConnectionPublished_at | createNewPayload | updateNewPayload | deleteNewPayload | NewsClass | NewsClassConnection | NewsClassAggregator | NewsClassGroupBy | NewsClassConnectionId | NewsClassConnectionCreated_at | NewsClassConnectionUpdated_at | NewsClassConnectionCategory | NewsClassConnectionPublished_at | createNewsClassPayload | updateNewsClassPayload | deleteNewsClassPayload | NewsDisplay | NewsDisplayConnection | NewsDisplayAggregator | NewsDisplayGroupBy | NewsDisplayConnectionId | NewsDisplayConnectionCreated_at | NewsDisplayConnectionUpdated_at | NewsDisplayConnectionName | NewsDisplayConnectionPublished_at | createNewsDisplayPayload | updateNewsDisplayPayload | deleteNewsDisplayPayload | QuantumComputingProgram | QuantumComputingProgramConnection | QuantumComputingProgramAggregator | QuantumComputingProgramGroupBy | QuantumComputingProgramConnectionId | QuantumComputingProgramConnectionCreated_at | QuantumComputingProgramConnectionUpdated_at | QuantumComputingProgramConnectionDiscribe | QuantumComputingProgramConnectionPhoto | QuantumComputingProgramConnectionLink | QuantumComputingProgramConnectionPublished_at | createQuantumComputingProgramPayload | updateQuantumComputingProgramPayload | deleteQuantumComputingProgramPayload | QuantumCumputingLearning | QuantumCumputingLearningConnection | QuantumCumputingLearningAggregator | QuantumCumputingLearningGroupBy | QuantumCumputingLearningConnectionId | QuantumCumputingLearningConnectionCreated_at | QuantumCumputingLearningConnectionUpdated_at | QuantumCumputingLearningConnectionDiscribe | QuantumCumputingLearningConnectionPhoto | QuantumCumputingLearningConnectionLink | QuantumCumputingLearningConnectionPublished_at | createQuantumCumputingLearningPayload | updateQuantumCumputingLearningPayload | deleteQuantumCumputingLearningPayload | Quote | QuoteConnection | QuoteAggregator | QuoteGroupBy | QuoteConnectionId | QuoteConnectionCreated_at | QuoteConnectionUpdated_at | QuoteConnectionP1 | QuoteConnectionAuthor | QuoteConnectionP2 | QuoteConnectionPublished_at | createQuotePayload | updateQuotePayload | deleteQuotePayload | Restaurant | RestaurantConnection | RestaurantAggregator | RestaurantGroupBy | RestaurantConnectionId | RestaurantConnectionCreated_at | RestaurantConnectionUpdated_at | RestaurantConnectionName | RestaurantConnectionDescription | RestaurantConnectionPublished_at | createRestaurantPayload | updateRestaurantPayload | deleteRestaurantPayload | Yes | YesConnection | YesAggregator | YesGroupBy | YesConnectionId | YesConnectionCreated_at | YesConnectionUpdated_at | YesConnectionAuthor | YesConnectionPq | YesConnectionP2 | YesConnectionPublished_at | createYesPayload | updateYesPayload | deleteYesPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  category(id: ID!, publicationState: PublicationState): Category
+  categories(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Category]
+  categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoryConnection
+  centerIntroduction(id: ID!, publicationState: PublicationState): CenterIntroduction
+  centerIntroductions(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [CenterIntroduction]
+  centerIntroductionsConnection(sort: String, limit: Int, start: Int, where: JSON): CenterIntroductionConnection
+  chair(id: ID!, publicationState: PublicationState): Chair
+  chairs(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Chair]
+  chairsConnection(sort: String, limit: Int, start: Int, where: JSON): ChairConnection
+  chineseQuote(id: ID!, publicationState: PublicationState): ChineseQuote
+  chineseQuotes(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [ChineseQuote]
+  chineseQuotesConnection(sort: String, limit: Int, start: Int, where: JSON): ChineseQuoteConnection
+  download(id: ID!, publicationState: PublicationState): Download
+  downloads(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Download]
+  downloadsConnection(sort: String, limit: Int, start: Int, where: JSON): DownloadConnection
+  member(id: ID!, publicationState: PublicationState): Member
+  members(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Member]
+  membersConnection(sort: String, limit: Int, start: Int, where: JSON): MemberConnection
+  new(id: ID!, publicationState: PublicationState): New
+  news(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [New]
+  newsConnection(sort: String, limit: Int, start: Int, where: JSON): NewConnection
+  newsClass(id: ID!, publicationState: PublicationState): NewsClass
+  newsClasses(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [NewsClass]
+  newsClassesConnection(sort: String, limit: Int, start: Int, where: JSON): NewsClassConnection
+  newsDisplay(id: ID!, publicationState: PublicationState): NewsDisplay
+  newsDisplays(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [NewsDisplay]
+  newsDisplaysConnection(sort: String, limit: Int, start: Int, where: JSON): NewsDisplayConnection
+  quantumComputingProgram(id: ID!, publicationState: PublicationState): QuantumComputingProgram
+  quantumComputingPrograms(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [QuantumComputingProgram]
+  quantumComputingProgramsConnection(sort: String, limit: Int, start: Int, where: JSON): QuantumComputingProgramConnection
+  quantumCumputingLearning(id: ID!, publicationState: PublicationState): QuantumCumputingLearning
+  quantumCumputingLearnings(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [QuantumCumputingLearning]
+  quantumCumputingLearningsConnection(sort: String, limit: Int, start: Int, where: JSON): QuantumCumputingLearningConnection
+  quote(id: ID!, publicationState: PublicationState): Quote
+  quotes(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Quote]
+  quotesConnection(sort: String, limit: Int, start: Int, where: JSON): QuoteConnection
+  restaurant(id: ID!, publicationState: PublicationState): Restaurant
+  restaurants(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Restaurant]
+  restaurantsConnection(sort: String, limit: Int, start: Int, where: JSON): RestaurantConnection
+  yes(id: ID!, publicationState: PublicationState): Yes
+  yeses(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Yes]
+  yesesConnection(sort: String, limit: Int, start: Int, where: JSON): YesConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createCategory(input: createCategoryInput): createCategoryPayload
+  updateCategory(input: updateCategoryInput): updateCategoryPayload
+  deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  createCenterIntroduction(input: createCenterIntroductionInput): createCenterIntroductionPayload
+  updateCenterIntroduction(input: updateCenterIntroductionInput): updateCenterIntroductionPayload
+  deleteCenterIntroduction(input: deleteCenterIntroductionInput): deleteCenterIntroductionPayload
+  createChair(input: createChairInput): createChairPayload
+  updateChair(input: updateChairInput): updateChairPayload
+  deleteChair(input: deleteChairInput): deleteChairPayload
+  createChineseQuote(input: createChineseQuoteInput): createChineseQuotePayload
+  updateChineseQuote(input: updateChineseQuoteInput): updateChineseQuotePayload
+  deleteChineseQuote(input: deleteChineseQuoteInput): deleteChineseQuotePayload
+  createDownload(input: createDownloadInput): createDownloadPayload
+  updateDownload(input: updateDownloadInput): updateDownloadPayload
+  deleteDownload(input: deleteDownloadInput): deleteDownloadPayload
+  createMember(input: createMemberInput): createMemberPayload
+  updateMember(input: updateMemberInput): updateMemberPayload
+  deleteMember(input: deleteMemberInput): deleteMemberPayload
+  createNew(input: createNewInput): createNewPayload
+  updateNew(input: updateNewInput): updateNewPayload
+  deleteNew(input: deleteNewInput): deleteNewPayload
+  createNewsClass(input: createNewsClassInput): createNewsClassPayload
+  updateNewsClass(input: updateNewsClassInput): updateNewsClassPayload
+  deleteNewsClass(input: deleteNewsClassInput): deleteNewsClassPayload
+  createNewsDisplay(input: createNewsDisplayInput): createNewsDisplayPayload
+  updateNewsDisplay(input: updateNewsDisplayInput): updateNewsDisplayPayload
+  deleteNewsDisplay(input: deleteNewsDisplayInput): deleteNewsDisplayPayload
+  createQuantumComputingProgram(input: createQuantumComputingProgramInput): createQuantumComputingProgramPayload
+  updateQuantumComputingProgram(input: updateQuantumComputingProgramInput): updateQuantumComputingProgramPayload
+  deleteQuantumComputingProgram(input: deleteQuantumComputingProgramInput): deleteQuantumComputingProgramPayload
+  createQuantumCumputingLearning(input: createQuantumCumputingLearningInput): createQuantumCumputingLearningPayload
+  updateQuantumCumputingLearning(input: updateQuantumCumputingLearningInput): updateQuantumCumputingLearningPayload
+  deleteQuantumCumputingLearning(input: deleteQuantumCumputingLearningInput): deleteQuantumCumputingLearningPayload
+  createQuote(input: createQuoteInput): createQuotePayload
+  updateQuote(input: updateQuoteInput): updateQuotePayload
+  deleteQuote(input: deleteQuoteInput): deleteQuotePayload
+  createRestaurant(input: createRestaurantInput): createRestaurantPayload
+  updateRestaurant(input: updateRestaurantInput): updateRestaurantPayload
+  deleteRestaurant(input: deleteRestaurantInput): deleteRestaurantPayload
+  createYes(input: createYesInput): createYesPayload
+  updateYes(input: updateYesInput): updateYesPayload
+  deleteYes(input: deleteYesInput): deleteYesPayload
+
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
